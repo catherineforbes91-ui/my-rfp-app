@@ -1,0 +1,8 @@
+export default function ThankYouPage() {
+  return (
+    <div className="thank-you-page">
+      <h2>Thank you!</h2>
+      <p>Your RFP request has been submitted.</p>
+    </div>
+  );
+}
