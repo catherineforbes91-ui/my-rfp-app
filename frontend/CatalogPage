@@ -1,0 +1,42 @@
+import { useEffect, useState } from "react";
+import wixData from 'wix-data';
+import ProductCard from "./components/ProductCard";
+
+export default function CatalogPage() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    wixData.query("Products")
+      .find()
+      .then(res => {
+        setProducts(res.items);
+      })
+      .catch(err => {
+        console.error("Failed to load products:", err);
+      });
+  }, []);
+
+  const addToCart = (product) => {
+    const cart = JSON.parse(sessionStorage.getItem("rfpCart") || "[]");
+    const idx = cart.findIndex(c => c.productId === product._id);
+    if (idx >= 0) {
+      cart[idx].qty += 1;
+    } else {
+      cart.push({
+        productId: product._id,
+        title: product.title,
+        price: product.hasPrice ? product.price : null,
+        qty: 1
+      });
+    }
+    sessionStorage.setItem("rfpCart", JSON.stringify(cart));
+  };
+
+  return (
+    <div className="catalog-page">
+      {products.map(p => (
+        <ProductCard key={p._id} product={p} onAdd={() => addToCart(p)} />
+      ))}
+    </div>
+  );
+}
