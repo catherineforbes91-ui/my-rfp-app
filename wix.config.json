@@ -1,0 +1,10 @@
+{
+  "client": {
+    "type": "web",
+    "entryPoint": "frontend"
+  },
+  "server": {
+    "type": "web-modules",
+    "entryPoint": "backend"
+  }
+}
