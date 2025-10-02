@@ -1,0 +1,16 @@
+{
+  "name": "my-rfp-app",
+  "version": "0.1.0",
+  "description": "Wix CLI starter for RFP catalog + cart app",
+  "main": "backend/rfpHandler.js",
+  "scripts": {
+    "start": "wix dev",
+    "build": "wix build",
+    "deploy": "wix deploy"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "xlsx": "^0.18.5",
+    "@sendgrid/mail": "^7.7.0"
+  }
+}
